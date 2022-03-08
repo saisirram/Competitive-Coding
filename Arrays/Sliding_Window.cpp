@@ -1,5 +1,13 @@
 /*
+Maximum Sum Subarray of Size k (Sliding Window Technique):
 
+Input:
+5
+7 20 2 3 4
+3
+
+Output:
+29 -> 7 + 20 + 2
 
 */
 #include<bits/stdc++.h>
