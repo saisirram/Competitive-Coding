@@ -1,3 +1,16 @@
+/*
+Maximum circular subarray sum:
+Given n numbers (both +ve and -ve), arranged in a circle, 
+find the maximum sum of consecutive numbers.
+
+Input:
+3
+5 -3 5
+
+Output:
+10 ->[5,5]
+
+*/
 #include<bits/stdc++.h>
 using namespace std;
 
