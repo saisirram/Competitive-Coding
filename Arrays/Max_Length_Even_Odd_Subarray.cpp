@@ -53,7 +53,7 @@ int Better_Solution(vector<int> v, int size)
     int res=1, curr=1;
     for(int i=1; i<size;i++)
     {
-        if((v[j]%2==0 && v[j-1]%2==1) ||(v[j]%2==1 && v[j-1]%2==0))
+        if((v[i]%2==0 && v[i-1]%2==1) ||(v[i]%2==1 && v[i-1]%2==0))
         {
             curr++;
             res = max(curr, res);
@@ -74,4 +74,12 @@ int main()
         cin>>x;
         v.push_back(x);
     }
+    int max_len;
+
+    max_len = BruteForce_Solution(v,size);
+    cout<<"Maximum Length even odd sub array(Brute Force Solution): "<<max_len<<endl;
+
+    max_len = Better_Solution(v,size);
+    cout<<"Maximum Length even odd sub array(Better Solution): "<<max_len<<endl;
+
 }
