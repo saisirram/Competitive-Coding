@@ -130,7 +130,7 @@ vector< vector<int> > Best_Solution(vector<vector<int> > v, int row, int col)
 
     for(int i=row -1; i>=0;i--)
     {
-        for(int j = col-1; j>=0; j--)
+        for(int j = col-1; j>=1; j--)
         {
             if(res[i][0] ==0 || res[0][j] ==0)
             {
