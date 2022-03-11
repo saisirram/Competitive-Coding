@@ -1,3 +1,18 @@
+/*
+Merge two Sorted Arrays Without Extra Space:
+Reference Link: https://takeuforward.org/data-structure/merge-two-sorted-arrays-without-extra-space/
+Given two sorted arrays arr1[] and arr2[] of sizes n and m in non-decreasing order. 
+Merge them in sorted order. Modify arr1 so that it contains the first N elements and modify arr2 so that it contains the last M elements.
+
+Input:
+4 3
+1 4 8 10
+2 3 9
+
+Output:
+1 2 3 4
+8 9 10
+*/
 #include<bits/stdc++.h>
 using namespace std;
 void print_array(int arr[], int size)
@@ -20,8 +35,10 @@ Auxiliary Space = O(N)
 
 void Better_Solution(int arr1[], int n, int arr2[], int m)
 {
+    //Time Complexity = O(n * m)
+    //Auxiliary Space = O(1)
     int k;
-    for(int i=0;i<n;i++)
+    for(int i=0;i<n;i++) //O(n)
     {
         if(arr1[i] > arr2[0])
         {
@@ -30,9 +47,9 @@ void Better_Solution(int arr1[], int n, int arr2[], int m)
             arr1[i] = temp;
         }
 
-        //sort(arr2, arr2 + m);
+        //sort(arr2, arr2 + m);//dont use this it takes O(mlogm) time 
         int first = arr2[0];
-        for(k=1; k<m ;k++)
+        for(k=1; k<m ;k++)//O(m)
         {
             if(arr2[k] < first)
             arr2[k-1] = arr2[k];
@@ -45,11 +62,15 @@ void Better_Solution(int arr1[], int n, int arr2[], int m)
 
 void Best_Solution(int arr1[], int n, int arr2[], int m)
 {
+    //Time Complexity = O(LogN) * O(N) N = (n+m)
+    //Auxiliary Space = O(1)
     int gap = ceil((float)(n+m)/2);
-    while (gap > 0) {
+    while (gap > 0) //O(LogN)
+    {
     int i = 0;
     int j = gap;
-    while (j < (n + m)) {
+    while (j < (n + m)) //O(N)
+    {
       if (j < n && arr1[i] > arr1[j]) {
         swap(arr1[i], arr1[j]);
       } else if (j >= n && i < n && arr1[i] > arr2[j - n]) {
