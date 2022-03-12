@@ -1,5 +1,6 @@
 /*
-Count inversions in an array
+Count inversions in an array:
+Reference Link: https://takeuforward.org/data-structure/count-inversions-in-an-array/
 Given an array of N integers, count the inversion of the array (using merge-sort).
 
 What is an inversion of an array? Definition: 
