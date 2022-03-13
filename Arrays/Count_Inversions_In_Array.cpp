@@ -59,7 +59,7 @@ int BruteForce_Solution(vector<int> v, int n)
 }
 
 //Merge Sort Implementation
-int Merging(vector<int> v, vector<int> temp, int low, int mid, int high)
+int Merging(vector<int> v, int low, int mid, int high)
 {
     int i=low;
     int j = mid;
@@ -70,39 +70,27 @@ int Merging(vector<int> v, vector<int> temp, int low, int mid, int high)
     {
         if(v[i]<v[j])
         {
-            v[k++] = v[i++];
+            i++;
         }
         else{
-            v[k++] = v[j++];
+            j++;
             inv_count += (mid - i);
         }
     }
-    while(i<=mid-1)
-    {
-        v[k++] = v[i++];
-    }
-    while(j<=high)
-    {
-        v[k++] = v[j++];
-    }
 
-    for(int i=0;i<=high;i++)
-    {
-        v[i] = temp[i];
-    }
     return inv_count;
 }
 
-int Merge_Sort(vector<int> v, vector<int> temp, int low, int high)
+int Merge_Sort(vector<int> v, int low, int high)
 {
     int mid;
     mid = (low + high)/2;
 
     int m_count =0;
-    m_count += Merge_Sort(v, temp,low,mid);
-    m_count += Merge_Sort(v, temp, mid+1, high);
+    m_count += Merge_Sort(v,low,mid);
+    m_count += Merge_Sort(v, mid+1, high);
 
-    m_count += Merging(v, temp,low,mid+1,high);
+    m_count += Merging(v,low,mid+1,high);
     return m_count;
 }
 
@@ -113,7 +101,7 @@ int Better_Solution(vector<int> v, int n)
     //Auxiliary Space = O(N) (temp array)
     vector<int> temp(n,0);
     int count =0;
-    count = Merge_Sort(v,temp,0,n-1);
+    count = Merge_Sort(v,0,n-1);
     return count;
 }
 
