@@ -1,3 +1,20 @@
+/*
+Two Sum : Check if a pair with given sum exists in Array
+Reference Link: https://takeuforward.org/data-structure/two-sum-check-if-a-pair-with-given-sum-exists-in-array/
+Given an array of integers nums[] and an integer target, return indices of the two numbers such that their sum is equal to the target.
+
+Note: Assume that there is exactly "one solution", and you are not allowed to use the same element twice. 
+Example: If target is equal to 6 and num[1] = 3, then nums[1] + nums[1] = target is not a solution.
+
+Input 1:
+4
+1 4 3 2
+4
+
+Output:
+0 2 -> num[0] + num[2] = 1 + 3 = 4 (Target)
+
+*/
 #include<bits/stdc++.h>
 using namespace std;
 vector<int> BruteForce_Solution(vector<int> v, int n, int target)
@@ -63,6 +80,8 @@ vector<int> Better_Solution(vector<int> v, int n, int target)
 
 vector<int> Best_Solution(vector<int> v, int n, int target)
 {
+    //Time Complexity = O(N)
+    //Auxiliary Space = O(N)
     unordered_map<int,int> map;
     vector<int> res;
 
