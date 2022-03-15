@@ -59,47 +59,61 @@ int BruteForce_Solution(vector<int> v, int n)
 }
 
 //Merge Sort Implementation
-int Merging(vector<int> v, int low, int mid, int high)
+int Merging(vector<int> &v, int low, int mid, int high)
 {
     int i=low;
     int j = mid;
-    int k = low;
     int inv_count = 0;
 
+    vector<int> temp;
     while((i<= mid -1) && (j<=high))
     {
-        if(v[i]<v[j])
+        if(v[i]<=v[j])
         {
-            i++;
+            temp.push_back(v[i++]);
         }
         else{
-            j++;
+            temp.push_back(v[j++]);
             inv_count += (mid - i);
         }
     }
+    while(i<=mid-1)
+    {
+        temp.push_back(v[i++]);
+    }
+    while(j<=high)
+    {
+        temp.push_back(v[j++]);
+    }
 
+    for(int i=low;i<=high;i++)
+    {
+        v[i] = temp[i - low];
+    }
     return inv_count;
 }
 
-int Merge_Sort(vector<int> v, int low, int high)
+int Merge_Sort(vector<int> &v, int low, int high)
 {
+    int m_count =0;
+    if(high>low)
+    {
     int mid;
     mid = (low + high)/2;
 
-    int m_count =0;
     m_count += Merge_Sort(v,low,mid);
     m_count += Merge_Sort(v, mid+1, high);
 
     m_count += Merging(v,low,mid+1,high);
+    }
     return m_count;
 }
 
-int Better_Solution(vector<int> v, int n)
+int Better_Solution(vector<int> &v, int n)
 {
     //Merge Sort Technique
     //Time Complexity = O(NLogN) (Merge Sort)
     //Auxiliary Space = O(N) (temp array)
-    vector<int> temp(n,0);
     int count =0;
     count = Merge_Sort(v,0,n-1);
     return count;
@@ -119,10 +133,10 @@ int main()
 
     int inversion_count;
 
-    inversion_count = BruteForce_Solution(v,n);
-    cout<<"No of Inversions in the array are(BruteForce Solution): "<<inversion_count<<endl;
+    //inversion_count = BruteForce_Solution(v,n);
+    //cout<<"No of Inversions in the array are(BruteForce Solution): "<<inversion_count<<endl;
     
-    inversion_count = BruteForce_Solution(v,n);
+    inversion_count = Better_Solution(v,n);
     cout<<"No of Inversions in the array are(Better Solution): "<<inversion_count<<endl;
     
     return 0;
